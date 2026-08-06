@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- 头部蓝色 -->
+  <circle cx="32" cy="32" r="30" fill="#21a8e8"/>
+  <!-- 脸白色 -->
+  <ellipse cx="32" cy="36" rx="22" ry="18" fill="#ffffff"/>
+  <!-- 左眼 -->
+  <ellipse cx="26" cy="22" rx="5" ry="6" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <!-- 右眼 -->
+  <ellipse cx="38" cy="22" rx="5" ry="6" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <!-- 瞳孔 -->
+  <circle cx="30" cy="23" r="1.6" fill="#1a1a1a"/>
+  <circle cx="34" cy="23" r="1.6" fill="#1a1a1a"/>
+  <!-- 红鼻子 -->
+  <circle cx="32" cy="28" r="3.2" fill="#e60012"/>
+  <!-- 嘴线到鼻子 -->
+  <line x1="32" y1="31" x2="32" y2="38" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 微笑 -->
+  <path d="M 14 36 Q 32 52 50 36" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- 胡须左 -->
+  <line x1="6"  y1="26" x2="16" y2="27" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="5"  y1="32" x2="15" y2="32" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="6"  y1="38" x2="16" y2="37" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 胡须右 -->
+  <line x1="58" y1="26" x2="48" y2="27" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="59" y1="32" x2="49" y2="32" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="58" y1="38" x2="48" y2="37" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
