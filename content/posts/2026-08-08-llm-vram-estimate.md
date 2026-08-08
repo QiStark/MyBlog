@@ -45,7 +45,7 @@ $$
 
 ### **2. 激活值**
 
-<img src="/images/llm-vram-activations.png" alt="Transformer层激活值示意" />
+![Transformer层激活值示意](/images/llm-vram-activations.png)
 
 在训练大模型时，除了模型参数、梯度和优化器状态外，前向传播产生的**中间激活值**也必须保存下来，直到反向传播完成才能释放。
 
