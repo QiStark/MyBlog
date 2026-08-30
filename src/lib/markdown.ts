@@ -38,11 +38,12 @@ interface HastNode {
   type: string
   tagName?: string
   properties?: { src?: unknown }
+  value?: unknown
   children?: HastNode[]
 }
 
 // 遍历 hast 树中所有 img 元素，对其 src 应用 transform
-function visitImgSrc(tree: HastNode, transform: (src: string) => string | null) {
+function visitImgTree(tree: HastNode, transform: (src: string) => string | null) {
   const visit = (node: HastNode) => {
     if (node.type === 'element' && node.tagName === 'img') {
       const src = node.properties?.src
@@ -50,6 +51,12 @@ function visitImgSrc(tree: HastNode, transform: (src: string) => string | null) 
         const next = transform(src)
         if (next !== null) node.properties.src = next
       }
+    }
+    if (node.type === 'raw' && typeof node.value === 'string') {
+      node.value = node.value.replace(/<img\b[^>]*\bsrc="([^"]*)"/g, (whole, src: string) => {
+        const next = transform(src)
+        return next === null ? whole : whole.slice(0, whole.length - src.length - 1) + next + '"'
+      })
     }
     if (node.children) node.children.forEach(visit)
   }
@@ -59,7 +66,7 @@ function visitImgSrc(tree: HastNode, transform: (src: string) => string | null) 
 // 在 rehype-img-size 之前剥掉 src 的 basePath 前缀，
 // 使其能在 public/ 下正确读到文件计算尺寸。
 const rehypeStripBasePath: Plugin = () => (tree) => {
-  visitImgSrc(tree as HastNode, (src) =>
+  visitImgTree(tree as HastNode, (src) =>
     src.startsWith(BASE_PATH + '/') ? '/' + src.slice(BASE_PATH.length + 1) : null
   )
 }
@@ -67,7 +74,7 @@ const rehypeStripBasePath: Plugin = () => (tree) => {
 // 在 rehype-img-size 之后把 basePath 前缀加回去，
 // 保证最终 HTML 中的 <img src> 在静态部署（basePath=/MyBlog）下能正确访问。
 const rehypeRestoreBasePath: Plugin = () => (tree) => {
-  visitImgSrc(tree as HastNode, (src) =>
+  visitImgTree(tree as HastNode, (src) =>
     src.startsWith('/') && !src.startsWith(BASE_PATH + '/') ? BASE_PATH + src : null
   )
 }
